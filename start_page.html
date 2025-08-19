@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-
+    <meta charset="utf-8" />
     <title>My page title</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" type="text/css" />
 
     <style>
       :root {
@@ -28,27 +27,60 @@
       /* ---- base layout / typography ---- */
       html, body { margin: 0; padding: 0; }
       body {
-        background: var(--c-background-color);        /* page background */
-        color: var(--base-font-color);                /* default text color */
+        background: var(--c-background-color);
+        color: var(--base-font-color);
         font: 16px/1.6 "Open Sans Condensed", sans-serif;
         display: flex; justify-content: center;
       }
       .page { max-width: 800px; width: 100%; padding: 0 16px; box-sizing: border-box; }
 
-      /* header & footer backgrounds */
+      /* header & footer */
       header, footer {
         background: var(--c-background-highlights);
         color: var(--base-font-color);
       }
       header { text-align: center; padding: 24px 0 12px; }
       header h1 { margin: 0; font-size: 150%; color: var(--c-yellow); }
-    </style>
 
+      /* ==== STEP 2 rules you asked me to add ==== */
+
+      /* nav: remove bullets + full-width flex + centered items */
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 8px 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+      }
+      nav a { color: var(--c-blue); text-decoration: none; }
+      nav a:hover { color: var(--c-orange); text-decoration: underline; }
+
+      /* main layout: article left, related (aside) right */
+      main {
+        display: grid;
+        grid-template-columns: 1fr 240px;  /* article | aside */
+        gap: 24px;
+        padding: 16px 0;
+      }
+
+      /* article headings need 50px top padding */
+      article h2, article h3 { padding-top: 50px; margin-top: 0; }
+
+      /* article links: magenta + orange on hover */
+      article a { color: var(--c-magenta); }
+      article a:hover { color: var(--c-orange); }
+
+      /* aside colours: text green; links red -> blue on hover */
+      aside { color: var(--c-green); }
+      aside a { color: var(--c-red); }
+      aside a:hover { color: var(--c-blue); }
+    </style>
   </head>
 
   <body>
     <div class="page">
-      <!-- Here is our main header that is used across all the pages of our website -->
       <header>
         <h1>Header</h1>
       </header>
@@ -61,31 +93,31 @@
           <li><a href="#">Contact</a></li>
         </ul>
 
-        <!-- A Search form is another common non-linear way to navigate through a website. -->
         <form>
-          <input type="search" name="q" placeholder="Search query">
-          <input type="submit" value="Go!">
+          <input type="search" name="q" placeholder="Search query" />
+          <input type="submit" value="Go!" />
         </form>
       </nav>
 
-      <!-- Here is our page's main content -->
       <main>
-        <!-- It contains an article -->
         <article>
           <h2>Article heading</h2>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            <!-- add a sample link so article link colour/hover is visible -->
+            <a href="#">sample link</a>
+          </p>
 
           <h3>Subsection</h3>
           <p>Donec ut librero sed accu vehicula ultricies a non tortor...</p>
-          <p>Pelientesque auctor nisi id magna consequat sagittis...</p>
+          <p>Pellentesque auctor nisi id magna consequat sagittis...</p>
 
           <h3>Another subsection</h3>
           <p>Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus...</p>
           <p>Vivamus fermentum semper porta. Nunc diam velit...</p>
         </article>
 
-        <!-- the aside content can also be nested within the main content -->
         <aside>
           <h2>Related</h2>
           <ul>
@@ -98,7 +130,6 @@
         </aside>
       </main>
 
-      <!-- And here is our main footer that is used across all the pages of our website -->
       <footer>
         <p>©Copyright 2050 by nobody. All rights reversed.</p>
       </footer>
