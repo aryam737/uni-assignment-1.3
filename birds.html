@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bird Selector</title>
+  <style>
+    /* two required 5-color palettes */
+    :root {
+      --primary-color: #ffd166;
+      --secondary-color: #ffcc5c;
+      --bg-color: #102a43;
+      --font-color: #e6edf3;
+      --heading-color: #f7b801;
+    }
+    [data-theme="dark"] {
+      --primary-color: #2c2f36;
+      --secondary-color: #3b3f46;
+      --bg-color: #0b1220;
+      --font-color: #d9e2ec;
+      --heading-color: #58a6ff;
+    }
+
+    /* use the variables */
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg-color);
+      color: var(--font-color);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      display: flex; justify-content: center;
+    }
+    main { width: min(800px, 100%); padding: 24px 16px 40px; }
+    header h1 { margin: 0 0 16px; color: var(--heading-color); text-align: center; }
+
+    nav ul { list-style: none; padding: 0; margin: 0 0 16px; display: flex; gap: 20px; justify-content: center; }
+    nav a { color: var(--font-color); text-decoration: none; opacity: .8; }
+    nav a:hover { opacity: 1; text-decoration: underline; }
+
+    .controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; justify-content: center; }
+    button { background: var(--secondary-color); border: 0; padding: 8px 12px; color: #000; border-radius: 6px; cursor: pointer; }
+    button:hover { filter: brightness(0.95); }
+    .viewer { display: grid; gap: 8px; }
+    .viewer img { width: 100%; height: auto; display: block; border-radius: 6px; background: var(--primary-color); }
+    .credit { margin: 0; font-size: 0.95rem; opacity: .95; }
+    .theme-toggle { margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Bird Selector</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="start_page.html">Start page</a></li>
+          <li><a href="birds.html">Birds</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- 5 buttons -->
+    <div class="controls">
+      <button data-bird="0">Pardalote</button>
+      <button data-bird="1">Purple Swamp Hen</button>
+      <button data-bird="2">White-headed Stilt</button>
+      <button data-bird="3">Inland Thornbill</button>
+      <button data-bird="4">Rose Robin</button>
+    </div>
+
+    <!-- one img, one p -->
+    <div class="viewer">
+      <img id="bird" alt="Selected bird" />
+      <p class="credit" id="credit"></p>
+    </div>
+
+    <button class="theme-toggle" id="toggleTheme">Toggle Theme</button>
+  </main>
+
+  <script>
+    // data
+    const birds = [
+      { name: "Pardalote",          src: "http://www.outgrabe.net/bird00.jpg", credit: "Pardalote by fir0002 (CC-by-NC)" },
+      { name: "Purple Swamp Hen",   src: "http://www.outgrabe.net/bird01.jpg", credit: "Purple swamp hen by Toby Hudson (CC-by-SA)" },
+      { name: "White-headed Stilt", src: "http://www.outgrabe.net/bird02.jpg", credit: "White-headed Stilt by JJ Harrison (CC-by-SA)" },
+      { name: "Inland Thornbill",   src: "http://www.outgrabe.net/bird03.jpg", credit: "Inland Thornbill by Peter Jacobs (CC-by-SA)" },
+      { name: "Rose Robin",         src: "http://www.outgrabe.net/bird04.jpg", credit: "Rose Robin by JJ Harrison (CC-by-SA)" }
+    ];
+
+    // elements
+    const img = document.getElementById("bird");
+    const credit = document.getElementById("credit");
+
+    // default display
+    function showBird(i) {
+      const b = birds[i];
+      img.src = b.src;
+      img.alt = b.name;
+      credit.textContent = b.credit;
+    }
+    showBird(0);
+
+    // make buttons work
+    document.querySelectorAll(".controls button").forEach(btn => {
+      btn.addEventListener("click", () => showBird(+btn.dataset.bird));
+    });
+
+    // theme toggle: flip html[data-theme] between light/dark
+    document.getElementById("toggleTheme").addEventListener("click", () => {
+      const root = document.documentElement;
+      const next = (root.getAttribute("data-theme") === "dark") ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+    });
+  </script>
+</body>
+</html>
