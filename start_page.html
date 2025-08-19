@@ -42,9 +42,7 @@
       header { text-align: center; padding: 24px 0 12px; }
       header h1 { margin: 0; font-size: 150%; color: var(--c-yellow); }
 
-      /* ==== STEP 2 rules you asked me to add ==== */
-
-      /* nav: remove bullets + full-width flex + centered items */
+      /* ==== STEP 2 rules ==== */
       nav ul {
         list-style: none;
         margin: 0;
@@ -57,25 +55,41 @@
       nav a { color: var(--c-blue); text-decoration: none; }
       nav a:hover { color: var(--c-orange); text-decoration: underline; }
 
-      /* main layout: article left, related (aside) right */
       main {
         display: grid;
-        grid-template-columns: 1fr 240px;  /* article | aside */
+        grid-template-columns: 1fr 240px;
         gap: 24px;
         padding: 16px 0;
       }
-
-      /* article headings need 50px top padding */
       article h2, article h3 { padding-top: 50px; margin-top: 0; }
 
-      /* article links: magenta + orange on hover */
       article a { color: var(--c-magenta); }
       article a:hover { color: var(--c-orange); }
 
-      /* aside colours: text green; links red -> blue on hover */
       aside { color: var(--c-green); }
       aside a { color: var(--c-red); }
       aside a:hover { color: var(--c-blue); }
+
+      /* ==== STEP 3 (cyan rules) ==== */
+      /* form text + search input in cyan, submit button orange on hover */
+      nav form { display: flex; gap: 8px; align-items: center; }
+      nav input[type="search"] {
+        border: 1px solid var(--c-cyan);
+        background: transparent;
+        color: var(--c-cyan);
+        padding: 4px 8px;
+      }
+      nav input[type="submit"] {
+        background: var(--c-cyan);
+        color: var(--c-background-color);
+        border: none;
+        padding: 4px 12px;
+        cursor: pointer;
+      }
+      nav input[type="submit"]:hover {
+        background: var(--c-orange);
+        color: white;
+      }
     </style>
   </head>
 
@@ -105,7 +119,6 @@
 
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            <!-- add a sample link so article link colour/hover is visible -->
             <a href="#">sample link</a>
           </p>
 
